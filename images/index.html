@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        width: 100%;
+     /*   height: 1000px;*/
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+    }
+    header img {
+        width: 100%;
+        height: 450px;
+    }
+    header h1 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ffffff80;
+        padding: 70px;
+        font-family: "Berkshire Swash", serif;
+        background-position: bottom;
+        background-size: cover;
+    }
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 1200px;
+        margin: 70px auto;
+    }
+    .card {
+        flex-basis: 350px;
+        margin: 0 auto 70px;
+        border: 1px solid gray;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+    }
+   
+    .product-badge{
+        width: 20%;
+        background-color: orange;
+        color: white;
+        align-self: flex-end;
+        border-radius: 5px;
+        margin: -10px -10px -19px;
+        padding: 5px;
+        font-weight: bold;
+        text-align: center;
+        z-index: 1;
+    }
+    .product-badge button {
+        background-color: orange;
+    }
+    .product-details {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .product-details h4 {
+        padding-bottom: 10px;
+    }
+    .product-details .price {
+        font: large;
+        font-weight: 700;
+        align-self: flex-end;
+    }
+    .price span {
+        font-family: "Berkshire Swash", serif;
+        font-size: 35px;
+    }
+    svg {
+        color: rgba(255, 255, 0, 0.642);
+    }
+    .rating {
+        display: flex;
+        padding: 20px;
+    }
+    .option {
+        display: flex;
+        justify-content: space-around;
+    }
+    .option-color {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+    }
+    select {
+        background-color: lightgray;
+        border-radius: 5px;
+    }
+   .option-size {
+    /*
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid red;*/
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+   }
+   .option-size input{
+    width:25px;
+    text-align: center;
+   }
+   input[type="number"] {
+    background-color: #fff;
+    border: 1px solid black;
+    
+    width: 50px;
+   }
+   .buy-button {
+    align-self: center;
+    margin: 0 auto;
+   }
+   .buy-button input {
+    cursor: pointer;
+    padding: 10px;
+    margin-top: 40px;
+    background-color: #f39c12;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    width: 300px;
+    margin-bottom: 20px;
+   }
+   .buy-button input:hover {
+    transform: scale(1.02);
+    background-color: #e5af0e;
+   }
+   div   input[type="text"] {
+    background-color: rgb(31, 118, 247);
+    border: none;
+    border-radius: 5px;
+    color: #000;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+.product-overlay {
+    position: absolute;
+    top: 0;    left: 0;
+    width: 100%;    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7) ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.product-overlay:hover .product-overlay {
+    opacity: 1; 
+}
+
+.quick-view {
+    padding: 10px 15px;
+    background-color: #f39c12;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 5px 5px 0 0;
+    }
+    
+    </style>
+<body>
+    <header>
+        <img src="./images/header-background.jpg">
+        <h1>Magazin de incaltaminte</h1>
+    </header>
+    <div class="container" >
+<!--First card-->
+        <div class="card">
+            <div class="product-badge"><span>-10%</span></div>
+
+        <div class="product-image">
+            <div> 
+                <img  src="images/balerini-irka.jpg">
+            </div>
+            <div class="product-overlay">
+                <button class="quick-view">Quick view</button>
+            </div>
+        </div>
+            <div class="product-details">
+                <h4>Balerini colorati</h4>
+                <p>Alege cele mai in voga ghete din aceasta vara. Fiind din piele naturala, iti va oferi
+                    comfortul dorit. Disponibil in culorile: roz, mint, gri-orange.
+                </p>
+                <p class="price">Pret: <span>$29.99</span></p>
+            </div>
+            <div class="rating">
+                <p>Star-rating:
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  4.5</p>
+            </div>
+            <div class="option">
+                <div class="option-color">
+                    <label for="Culoarea">Culoarea:
+                    </label>
+                    <select>
+                        <option value="Roz">Roz</option>
+                        <option value="Mint">Mint</option>
+                        <option value="Gri-orange">Gri-orange</option>
+                    </select>
+                </div>
+                <div class="option-size">
+                    <label for="text">Marimea:</label>
+                    <div>
+                        <input type="text" placeholder="-">
+                        <input type="number" step="1" min="31" max="43" placeholder="36">
+                        <input type="text" placeholder="+">  
+                    </div> 
+                </div>
+            </div>
+            <div class="buy-button">
+                <input type="submit" value="Cumpara">
+            </div>
+        </div>
+
+
+        <!--Second card-->
+        <div class="card">
+            <div class="product-badge"><span>Popular</span></div>
+            <div><img src="./images/sandale cu fundita.jpg"></div>
+            <div class="product-details">
+                <h4>Sandal cu fundita asimetrica</h4>
+                <p>Alege cele mai in voga ghete din aceasta vara. Fiind din piele naturala, iti va oferi
+                    comfortul dorit. Disponibil in culorile: roz, mint, gri-orange.
+                </p>
+                <p class="price">Pret: <span>$159.99</span></p>
+            </div>
+            <div class="rating">
+                <p>Star-rating:</p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  <p>4.5</p>
+            </div>
+            <div class="option">
+                <div class="option-color">
+                    <label for="Culoarea">Culoarea:</label>
+                    <select>
+                        <option value="Roz">Roz</option>
+                        <option value="Mint">Mint</option>
+                        <option value="Gri-orange">Gri-orange</option>
+                    </select>
+                </div>
+                <div class="option-size">
+                    <label for="text">Marimea:</label>
+                    <div>
+                        <input type="text" placeholder="-">
+                        <input type="number" step="1" min="31" max="43" placeholder="36">
+                        <input type="text" placeholder="+">  
+                    </div>
+                </div>
+            </div>
+            <div class="buy-button">
+                <input type="submit" value="Cumpara">
+            </div>
+        </div>
+
+
+        <!--Third card-->
+        <div class="card">
+            <div class="product-badge"><span>Sale</span></div>
+            <div><img src="./images/loferi-galbeni.jpg"></div>
+            <div class="product-details">
+                <h4>Loferi</h4>
+                <p>Alege cele mai in voga ghete din aceasta vara. Fiind din piele naturala, iti va oferi
+                    comfortul dorit. Disponibil in culorile: roz, mint, gri-orange.
+                </p>
+                <p class="price">Pret: <span>$39.99</span></p>
+            </div>
+            <div class="rating">
+                <p>Star-rating:</p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  <p>4.5</p>
+            </div>
+            <div class="option">
+                <div class="option-color">
+                    <label for="Culoarea">Culoarea:</label>
+                    <select>
+                        <option value="Roz">Roz</option>
+                        <option value="Mint">Mint</option>
+                        <option value="Gri-orange">Gri-orange</option>
+                    </select>
+                </div>
+                <div class="option-size">
+                    <label for="text">Marimea:</label>
+                    <div>
+                        <input type="text" placeholder="-">
+                        <input type="number" step="1" min="31" max="43" placeholder="36">
+                        <input type="text" placeholder="+">  
+                    </div>
+                </div>
+            </div>
+            <div class="buy-button">
+                <input type="submit" value="Cumpara">
+            </div>
+        </div>
+
+
+        <!--Fourth card-->
+        <div class="card">
+            <div class="product-badge"><span>Sale</span></div>
+            <div><img src="./images/pantofi-copii-froggie-din-piele-naturala-verde.jpg"></div>
+            <div class="product-details">
+                <h4>Pantofi froggie</h4>
+                <p>Alege cele mai in voga ghete din aceasta vara. Fiind din piele naturala, iti va oferi
+                    comfortul dorit. Disponibil in culorile: roz, mint, gri-orange.
+                </p>
+                <p class="price">Pret: <span>$19.99</span></p>
+            </div>
+            <div class="rating">
+                <p>Star-rating:</p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  <p>4.5</p>
+            </div>
+            <div class="option">
+                <div class="option-color">
+                    <label for="Culoarea">Culoarea:</label>
+                    <select>
+                        <option value="Roz">Roz</option>
+                        <option value="Mint">Mint</option>
+                        <option value="Gri-orange">Gri-orange</option>
+                    </select>
+                </div>
+                <div class="option-size">
+                    <label for="text">Marimea:</label>
+                    <div>
+                        <input type="text" placeholder="-">
+                        <input type="number" step="1" min="31" max="43" placeholder="36">
+                        <input type="text" placeholder="+">  
+                    </div>
+                </div>
+            </div>
+            <div class="buy-button">
+                <input type="submit" value="Cumpara">
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
+                    
